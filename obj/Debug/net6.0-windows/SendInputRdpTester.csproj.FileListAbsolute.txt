@@ -1,0 +1,16 @@
+C:\Projects\SendInputRdpTester\bin\Debug\net6.0-windows\SendInputRdpTester.exe
+C:\Projects\SendInputRdpTester\bin\Debug\net6.0-windows\SendInputRdpTester.deps.json
+C:\Projects\SendInputRdpTester\bin\Debug\net6.0-windows\SendInputRdpTester.runtimeconfig.json
+C:\Projects\SendInputRdpTester\bin\Debug\net6.0-windows\SendInputRdpTester.dll
+C:\Projects\SendInputRdpTester\bin\Debug\net6.0-windows\SendInputRdpTester.pdb
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\SendInputRdpTester.Form1.resources
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\SendInputRdpTester.csproj.GenerateResource.cache
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\SendInputRdpTester.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\SendInputRdpTester.AssemblyInfoInputs.cache
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\SendInputRdpTester.AssemblyInfo.cs
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\SendInputRdpTester.csproj.CoreCompileInputs.cache
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\SendInputRdpTester.dll
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\refint\SendInputRdpTester.dll
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\SendInputRdpTester.pdb
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\SendInputRdpTester.genruntimeconfig.cache
+C:\Projects\SendInputRdpTester\obj\Debug\net6.0-windows\ref\SendInputRdpTester.dll

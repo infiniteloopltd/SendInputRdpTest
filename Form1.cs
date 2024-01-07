@@ -9,7 +9,63 @@ namespace SendInputRdpTester
 
         [DllImport("user32.dll", SetLastError = true)]
         static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
-        
+
+        // Import the necessary functions from user32.dll
+        [DllImport("user32.dll")]
+        public static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
+
+        // Structure for input event
+        [StructLayout(LayoutKind.Sequential)]
+        public struct INPUT
+        {
+            public int type;
+            public InputUnion u;
+        }
+
+        [StructLayout(LayoutKind.Explicit)]
+        public struct InputUnion
+        {
+            [FieldOffset(0)]
+            public MOUSEINPUT mi;
+            [FieldOffset(0)]
+            public KEYBDINPUT ki;
+            [FieldOffset(0)]
+            public HARDWAREINPUT hi;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MOUSEINPUT
+        {
+            public int dx;
+            public int dy;
+            public uint mouseData;
+            public uint dwFlags;
+            public uint time;
+            public IntPtr dwExtraInfo;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct KEYBDINPUT
+        {
+            public ushort wVk;
+            public ushort wScan;
+            public uint dwFlags;
+            public uint time;
+            public IntPtr dwExtraInfo;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct HARDWAREINPUT
+        {
+            public uint uMsg;
+            public ushort wParamL;
+            public ushort wParamH;
+        }
+
+        // Key event flags
+        const int KEYEVENTF_KEYDOWN = 0x0000;
+        const int KEYEVENTF_KEYUP = 0x0002;
+
         private System.Windows.Forms.Timer timer = new();
         public Form1()
         {
@@ -18,13 +74,12 @@ namespace SendInputRdpTester
 
         const byte VK_A = 0x41;
 
-        // Key event flags
-        const int KEYEVENTF_KEYDOWN = 0x0001; // Key down flag
-        const int KEYEVENTF_KEYUP = 0x0002;   // Key up flag
+      
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Text = "SendInput version";
             timer.Interval = 1000;
             timer.Tick += (o, args) =>
             {
@@ -238,8 +293,27 @@ namespace SendInputRdpTester
                   
                  */
                 #endregion
-                keybd_event(randomKeyCode, 0, KEYEVENTF_KEYDOWN, 0); //Start holding the key down
-                keybd_event(randomKeyCode, 0, KEYEVENTF_KEYUP, 0); //Stop holding the key down
+
+                INPUT[] inputs = new INPUT[2];
+
+                inputs[0] = new INPUT();
+                inputs[0].type = 1; // INPUT_KEYBOARD
+
+                inputs[0].u.ki.wVk = (ushort)randomKeyCode;
+                inputs[0].u.ki.wScan = 0;
+                inputs[0].u.ki.dwFlags = KEYEVENTF_KEYDOWN;
+                inputs[0].u.ki.time = 0;
+                inputs[0].u.ki.dwExtraInfo = IntPtr.Zero;
+
+                inputs[1] = new INPUT();
+                inputs[1].type = 1; // INPUT_KEYBOARD
+                inputs[1].u.ki.wVk = (ushort)randomKeyCode;
+                inputs[1].u.ki.wScan = 0;
+                inputs[1].u.ki.dwFlags = KEYEVENTF_KEYUP;
+                inputs[1].u.ki.time = 0;
+                inputs[1].u.ki.dwExtraInfo = IntPtr.Zero;
+
+                SendInput(2, inputs, Marshal.SizeOf(typeof(INPUT)));
             };
             timer.Start();
         }
